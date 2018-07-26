@@ -30,7 +30,7 @@ public class OAuthConfig {
     }
 
     @Bean
-    public Filter ssoFilter(){
+    public Filter ssoFilter() {
         OAuth2ClientAuthenticationProcessingFilter oauth2Filter = new OAuth2ClientAuthenticationProcessingFilter("/login");
         OAuth2RestTemplate oAuth2RestTemplate = new OAuth2RestTemplate(googleClient(), oauth2ClientContext);
         oauth2Filter.setRestTemplate(oAuth2RestTemplate);
