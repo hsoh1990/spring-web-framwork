@@ -1,3 +1,8 @@
+# server config
+server:
+  port: 8080
+
+# spring application config
 spring:
   datasource:
     data: classpath:schema-h2.sql # Spring Session 테이블 스키마 적용
@@ -13,10 +18,45 @@ spring:
     livereload:
       enabled: true # 정적파일들의 실시간 갱신
 
-
-#security:
-#  basic:
-#    enabled: false # security 기본 인증 옵션 제거
+# log config
 logging:
   level:
     org.hibernate.type: trace # JPA로 생성되는 쿼리의 파라미터 값 확인
+
+# OAuth config
+google :
+  client :
+    clientId :
+    clientSecret:
+    accessTokenUri: https://accounts.google.com/o/oauth2/token
+    userAuthorizationUri: https://accounts.google.com/o/oauth2/auth
+    clientAuthenticationScheme: form
+    scope: email, profile
+  resource:
+    userInfoUri: https://www.googleapis.com/oauth2/v2/userinfo
+
+ facebook :
+   client :
+     clientId :
+     clientSecret:
+     accessTokenUri: https://graph.facebook.com/oauth/access_token
+     userAuthorizationUri: https://www.facebook.com/dialog/oauth?display=popup
+     tokenName: oauth_token
+     authenticationScheme: query
+     clientAuthenticationScheme: form
+     scope: email
+   resource:
+     userInfoUri: https://graph.facebook.com/me?fields=id,name,email,link
+
+ kakao :
+   client :
+     clientId :
+     accessTokenUri: https://kauth.kakao.com/oauth/token
+     userAuthorizationUri: https://kauth.kakao.com/oauth/authorize
+   resource:
+     userInfoUri: https://kapi.kakao.com/v1/user/me
+
+ twitter:
+   clientId:
+   clientSecret:
+   callbackUri: http://localhost:8080/twitter/complete
